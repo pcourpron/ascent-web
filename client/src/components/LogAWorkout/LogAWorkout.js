@@ -49,7 +49,7 @@ class LogAWorkout extends React.Component {
                         </div>
                     </div>
                     <div className='row' >
-                    <div className = 'col-sm-3'>
+                    <div className = 'col-sm-3' style={{minWidth:'300px'}} >
                         <div style={{backgroundColor:'white',borderRadius:'10px'}}>
                        <DayPicker
                        modifiers={{date:this.state.date}}
@@ -62,7 +62,7 @@ class LogAWorkout extends React.Component {
                        </div>
 
                         </div>
-                        <div className = 'col-sm-8' style={{backgroundColor:'whitesmoke',paddingRight:'20px',borderRadius:'10px'}}>
+                        <div className = 'col' style={{backgroundColor:'whitesmoke',paddingRight:'20px',borderRadius:'10px',marginRight:'20px'}}>
                         {this.state.pickedWorkout === 'strength'?
                         <StrengthLog
                         picked = {this.props.all.picked}

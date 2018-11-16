@@ -18,7 +18,9 @@ class FrontDash extends React.Component {
 
                     <div className='col d-flex justify-content-center flex-wrap'>
                         <h3 className='w-100 text-center' >Cardio Scores</h3>
-                        <CardioScores />
+                        <CardioScores
+                        all= {this.props.all}
+                        />
                     </div>
 
 
@@ -28,11 +30,12 @@ class FrontDash extends React.Component {
                     </div>
 
                 </div>
-                <div className='row' style={{marginTop:'20px'}}>
+                <div className='row' style={{marginTop:'20px', padding:'0px 20px'}}>
 
                     <div className='col'>
                     <Workout
                     day ={`Yesterday's Workout`}
+                    workouts = {this.props.all.cardioArrayYesterday}
                     />
                     </div>
 

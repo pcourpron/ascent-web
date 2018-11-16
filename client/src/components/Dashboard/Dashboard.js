@@ -11,8 +11,11 @@ import '../../App.css';
 
 class Dashboard extends React.Component {
     state = {
-        isOpen: true
+        isOpen: false
     }
+
+   
+
 
     componentWillMount = () => {
 
@@ -47,6 +50,9 @@ class Dashboard extends React.Component {
             this.props.uploadClients(value)
         })
     }
+    toggle=()=>{
+        this.setState({isOpen: !this.state.isOpen})
+    }
 
 
     render() {
@@ -56,9 +62,11 @@ class Dashboard extends React.Component {
                     <div className='container'>
 
                         <NavbarBrand href="/"><h3>Ascent</h3></NavbarBrand>
+                        {this.props.all.picked === '' ? null :
+                        <div>
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.isOpen} navbar>
-                            {this.props.all.picked === '' ? null :
+                            
                                 <Nav className="ml-auto" navbar>
                                     <NavItem>
                                         <Link to='/LogAWorkout' style={{ textDecoration: 'none' }}> <NavLink activeClassName="active"> Log A Workout</NavLink></Link>
@@ -73,8 +81,10 @@ class Dashboard extends React.Component {
                                         <Link to='/Graphs' style={{ textDecoration: 'none' }}> <NavLink activeClassName="active"> Graphs</NavLink></Link>
                                     </NavItem>
                                 </Nav>
-                            }
+                            
                         </Collapse>
+                        </div>
+                        }
                     </div>
                 </Navbar>
                 {this.props.all.picked === '' ?
@@ -85,7 +95,8 @@ class Dashboard extends React.Component {
                     :
                     <FrontDash
                         first={this.props.all.first}
-                        last={this.props.all.last} />
+                        last={this.props.all.last} 
+                        all = {this.props.all}/>
                 }
             </div>
 
