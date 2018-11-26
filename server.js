@@ -17,8 +17,10 @@ app.use(express.static('public'));
 
 
 // Import routes and give the server access to them.
-const routes = require("./routes/login-routes.js");
-app.use(routes);
+const loginRoutes = require("./routes/login-routes.js");
+const stress_scores_routes = require('./routes/stress_scores_routes.js')
+app.use(loginRoutes);
+app.use(stress_scores_routes)
 
 
   app.listen(PORT, () => {

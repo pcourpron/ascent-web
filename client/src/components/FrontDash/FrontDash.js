@@ -2,30 +2,37 @@ import React from 'react';
 import CardioScores from '../CardioScores/CardioScores.js';
 import Metrics from '../Metrics/Metrics';
 import Workout from '../Workouts/Workout';
+import Body from '../Body/Body'
 
 class FrontDash extends React.Component {
 
     render() {
         return (
             <div>
-                <div className='row justify-content-center align-items-center' style={{ paddingTop: '75px' }}>
-                    <div style={{ height: '80px', width: '80px', borderRadius: '40px', backgroundImage: 'grey' }}></div>
+                <div className='row justify-content-center align-items-center' >
+                    <div style={{ height: '80px', width: '80px', borderRadius: '40px', backgroundColor: 'grey' }}></div>
                     <h3 style={{ marginLeft: '15px' }}>{`${this.props.first} ${this.props.last}`}</h3>
                 </div>
                 <div className='row'>
                     <div className='col'>
+                    
                     </div>
 
                     <div className='col d-flex justify-content-center flex-wrap'>
+     
                         <h3 className='w-100 text-center' >Cardio Scores</h3>
                         <CardioScores
                         all= {this.props.all}
                         />
+                              <Metrics />
+
                     </div>
 
 
                     <div className='col'>
-                        <Metrics />
+                    <h3 className='w-100 text-center'> INOL Scores</h3>
+                    <Body/>
+                        
 
                     </div>
 

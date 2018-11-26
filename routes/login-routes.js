@@ -20,6 +20,9 @@ const firestore = firebase.firestore()
 const settings = { timestampsInSnapshots: true };
 firestore.settings(settings);
 
+router.get('/test',(req,res)=>{
+    res.send('hi')
+})
 
 router.post('/stravaDownload', (req, res) => {
     // Strava OAuth process
@@ -121,6 +124,7 @@ router.put('/updateScores', (req, res) => {
                     snapshot.forEach(doc => {
                         let doc_id = doc.id;
                         let heartrate = doc.data().heartrate_data;
+                        if (heartrate !== undefined){
                         let stressScore = 0;
                         heartrate.forEach(sec =>{
                             if(sec < lthr*.75){
@@ -166,16 +170,19 @@ router.put('/updateScores', (req, res) => {
                         })
                         
                         firestore.collection('Users').doc(req.body.client).collection('Cardio Workouts').doc(doc_id).update({stress_score:stressScore})
-                        
+                    }
+                    else{}
 
                     });
                     res.send('yay')
 
                 })
-                .catch((err) => { res.send(err) })
+                .catch((err) => res.send(err) )
 
         })
 })
+
+router.get('/getToday')
 
 
 

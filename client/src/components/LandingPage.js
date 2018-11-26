@@ -1,16 +1,11 @@
 import React from 'react';
-import NavbarTop from './Navbar';
-
+import Navbar from './Navbar';
+import Body from './Body/Body.js'
 
 const LandingPage = ()=>{
     return(
     <div>
-        <NavbarTop/>
-   
-
-  
-  
-
+      <Navbar/>
     <div className="parallax">
     <div className="container" style={{height:'100%'}}>
     <div className='row justify-content-center' style={{height:'100%'}}>
@@ -86,7 +81,7 @@ const LandingPage = ()=>{
 
     </div>
   </div>
-  
+
   </div>
 
 

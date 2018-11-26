@@ -9,6 +9,15 @@ class Metrics extends React.Component {
                     <div className='row justify-content-center'>
                         <span> {`Weight: 220lbs `} <i style={{color:'red'}} class="fas fa-angle-down"></i> </span>
                     </div>
+                    <div className='row justify-content-center'>
+                        <span> {`Sleep: 7 hours`} <i style={{color:'red'}} class="fas fa-angle-down"></i> </span>
+                    </div>
+                    <div className='row justify-content-center'>
+                        <span> {`Stress: 4 `} <i style={{color:'lightgreen'}} class="fas fa-angle-down"></i> </span>
+                    </div>
+                    <div className='row justify-content-center'>
+                        <span> {`Weight: 220lbs `} <i style={{color:'red'}} class="fas fa-angle-down"></i> </span>
+                    </div>
                 </div>
             </div>
         )

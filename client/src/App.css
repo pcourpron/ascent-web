@@ -19,3 +19,4 @@ a{
 a:hover {
   color:'rgba(255,255,255,.75)' !important
 }
+.ct-label.ct-horizontal { position: relative; text-anchor: middle}

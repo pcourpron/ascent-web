@@ -4,7 +4,7 @@ import ClientPick from '../ClientPick/ClientPick.js'
 import FrontDash from '../FrontDash/FrontDash.js'
 
 import { Link } from 'react-router-dom'
-import { Navbar, NavbarBrand, NavItem, NavLink, Collapse, NavbarToggler, Nav } from 'reactstrap'
+import Navbar from '../ClientPickNavbar/ClientPickNavbar'
 import { auth, firestore } from '../firebase/firebase'
 
 import '../../App.css';
@@ -57,47 +57,28 @@ class Dashboard extends React.Component {
 
     render() {
         return (
-            <div className='container-fluid' style={{ height: '100vh', backgroundImage: 'linear-gradient(to right top, #0043a8, #007cdb, #00abc8, #00d27f, #a8eb12)' }}>
-                <Navbar dark fixed='top' expand="md" style={{ backgroundColor: 'teal' }}>
-                    <div className='container'>
-
-                        <NavbarBrand href="/"><h3>Ascent</h3></NavbarBrand>
-                        {this.props.all.picked === '' ? null :
-                        <div>
-                        <NavbarToggler onClick={this.toggle} />
-                        <Collapse isOpen={this.state.isOpen} navbar>
-                            
-                                <Nav className="ml-auto" navbar>
-                                    <NavItem>
-                                        <Link to='/LogAWorkout' style={{ textDecoration: 'none' }}> <NavLink activeClassName="active"> Log A Workout</NavLink></Link>
-                                    </NavItem>
-                                    <NavItem>
-                                        <Link to='/Sync' style={{ textDecoration: 'none' }}> <NavLink activeClassName="active"> Sync Cardio Workout</NavLink></Link>
-                                    </NavItem>
-                                    <NavItem>
-                                        <Link to='/LogMetrics' style={{ textDecoration: 'none' }}> <NavLink activeClassName="active"> Log Metrics</NavLink></Link>
-                                    </NavItem>
-                                    <NavItem>
-                                        <Link to='/Graphs' style={{ textDecoration: 'none' }}> <NavLink activeClassName="active"> Graphs</NavLink></Link>
-                                    </NavItem>
-                                </Nav>
-                            
-                        </Collapse>
-                        </div>
-                        }
-                    </div>
-                </Navbar>
+            <div className='container-fluid' style={{ minHeight: '100vh', backgroundImage: 'linear-gradient(to right top, #0043a8, #007cdb, #00abc8, #00d27f, #a8eb12)', paddingTop: '100px' }}>
+          
                 {this.props.all.picked === '' ?
+                <div>
+                <Navbar
+                picked={this.props.all.picked}/>
                     <ClientPick
                         clients={this.props.all.clients}
                         handleClientPick={this.props.handleClientPick}
                     />
+                    </div>
                     :
+                    <div>
+                        <Navbar
+                        picked={this.props.all.picked}/>
                     <FrontDash
                         first={this.props.all.first}
                         last={this.props.all.last} 
                         all = {this.props.all}/>
+                        </div>
                 }
+            
             </div>
 
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-
+import moment from 'moment';
 
 
 import LandingPage from './components/LandingPage';
@@ -14,6 +14,7 @@ import SyncPage from './components/SyncPage/SyncPage';
 import SyncRedirect from './components/SyncRedirect/SyncRedirect';
 import SyncingPage from './components/SyncingPage/SyncingPage';
 import Scatter from './components/Graph/Graphs'
+import Navbar from './components/Navbar'
 
 import firebase from 'firebase';
 import { firestore } from 'firebase';
@@ -91,43 +92,32 @@ class App extends Component {
         var fullStressArray = [];
 
         for (let i = 0; i < stressArray.length; i++) {
+
           fullStressArray.push(stressArray[i])
 
           if (i < stressArray.length - 1) {
 
-            var date1 = new Date(stressArray[i].date);
-            var date2 = new Date(stressArray[i + 1].date);
-
-
+            var date1 = moment(stressArray[i].date);
+            var date2 = moment(stressArray[i + 1].date);
             var dayDifference = (date2 - date1) / 86400000;
 
             if (dayDifference > 1) {
               for (let x = 1; x < dayDifference; x++) {
-                if (x === 1) {
-                  fullStressArray.push({ date: new Date(date1.setDate(date1.getDate() + 2)), score: 0 })
+                date1 = moment(date1).add(1,'days').format('Y-MM-DD')
+                fullStressArray.push({ date: date1, score: 0 })
 
-                }
-                else {
-                  fullStressArray.push({ date: new Date(date1.setDate(date1.getDate() + 1)), score: 0 })
-                }
               }
             }
           }
-
 
           else {
             // adds zeros to the end of the array to reach today's date if needed.
             let lastWorkoutDate = new Date(stressArray[stressArray.length - 1].date.slice(0, 10));
             let daysSinceLastWorkout = Math.floor((today - lastWorkoutDate) / (1000 * 60 * 60 * 24));
             if (daysSinceLastWorkout > 0) {
-              for (let i = 1; i < daysSinceLastWorkout; i++) {
-                if (i === 1) {
-                  fullStressArray.push({ date: new Date(lastWorkoutDate.setDate(lastWorkoutDate.getDate() + 2)), score: 0 })
-
-                }
-                else {
-                  fullStressArray.push({ date: new Date(lastWorkoutDate.setDate(lastWorkoutDate.getDate() + 1)), score: 0 })
-                }
+              for (let i = 1; i < daysSinceLastWorkout + 1; i++) {
+                  lastWorkoutDate  = moment(lastWorkoutDate).add(1,'days').format('Y-MM-DD')
+                  fullStressArray.push({ date: lastWorkoutDate, score: 0 })             
               }
             }
           }
@@ -142,6 +132,11 @@ class App extends Component {
       })
 
   }
+
+
+
+
+  
 
   getAllScores = () => {
     //grab stress scores
@@ -161,35 +156,50 @@ class App extends Component {
     let freshnessArray = []
     let stress
 
-    for (let i = 0; i <= stressArray.length-1; i++) {
-      
+
+
+    for (let i = 0; i < stressArray.length; i++) {
+
+      // Reached the end on the stress Array. We don't want to throw and error 
+      // by checking the next index ( doesn't exist)
+
       if (i === stressArray.length-1){
-        console.log(stress)
+      let date = moment(stressArray[i].date)
+      stress = stress + stressArray[i].score
+      console.log(stress)
+
       fitness += (stress - fitness) * fitnessMultiplier;
-      fitnessArray.push(fitness);
-
       fatigue += (stress - fatigue) * faitgueMultiplier;
-      fatigueArray.push(fatigue)
+      freshness= fitness - fatigue;
 
-      freshness= fitness - fatigue
-      freshnessArray.push(freshness)
+      
+      fitnessArray.push({x: date,y: fitness} );
+      fatigueArray.push({x: date,y: fatigue} )
+      freshnessArray.push({x: date,y:freshness})
       }
+
+
       else{
+
       stress = stressArray[i].score
 
       if (stressArray[i].date === stressArray[i+1].date){
         stress += stressArray[i+1].score
+        
       }
-  
       else{
+
+      let date = moment(stressArray[i].date)
+
+    
       fitness += (stress - fitness) * fitnessMultiplier;
-      fitnessArray.push(fitness);
+      fitnessArray.push({x: date ,y: fitness} );
 
       fatigue += (stress - fatigue) * faitgueMultiplier;
-      fatigueArray.push(fatigue)
+      fatigueArray.push({x: date, y: fatigue })
 
       freshness= fitness - fatigue
-      freshnessArray.push(freshness)
+      freshnessArray.push({ x: date,y:freshness })
       }
     }
   }
@@ -208,9 +218,7 @@ class App extends Component {
   }
 
   redirectClient(client) {
-    this.setState({ picked: client }, () => {
-      console.log(this.state)
-    })
+    this.setState({ picked: client })
   }
 
 
@@ -262,7 +270,6 @@ class App extends Component {
                     all={this.state}
                     handleClientPick={this.handleClientPick}
                     uploadClients={this.upLoadClients}
-
                   />)
               }} />
 
@@ -292,7 +299,11 @@ class App extends Component {
               }} />
 
               <Route exact path='/Graphs' render = {(history) =>{
-                return(<Scatter/>)
+                return(<Scatter
+                fitness = {this.state.fitness}
+                fatigue = {this.state.fatigue}
+                freshness = {this.state.freshness}
+                />)
               }}/>
 
               <Route path='*' render={() => {
