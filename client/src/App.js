@@ -181,9 +181,9 @@ class App extends Component {
         freshness = fitness - fatigue;
 
 
-        fitnessArray.push({ x: date, y: Math.round(fitness) });
-        fatigueArray.push({ x: date, y: Math.round(fatigue) })
-        freshnessArray.push({ x: date, y: Math.round(freshness) })
+        fitnessArray.push({ x: date, y: (fitness) });
+        fatigueArray.push({ x: date, y: (fatigue) })
+        freshnessArray.push({ x: date, y: (freshness) })
       }
 
 
@@ -201,13 +201,13 @@ class App extends Component {
 
 
           fitness += (stress - fitness) * fitnessMultiplier;
-          fitnessArray.push({ x: date, y: Math.round(fitness) });
+          fitnessArray.push({ x: date, y: (fitness) });
 
           fatigue += (stress - fatigue) * faitgueMultiplier;
-          fatigueArray.push({ x: date, y: Math.round(fatigue) })
+          fatigueArray.push({ x: date, y: (fatigue) })
 
           freshness = fitness - fatigue
-          freshnessArray.push({ x: date, y: Math.round(freshness) })
+          freshnessArray.push({ x: date, y: (freshness) })
         }
       }
     }

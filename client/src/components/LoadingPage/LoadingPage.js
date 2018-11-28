@@ -7,11 +7,10 @@ class LoadingPage extends React.Component {
             `The more you weigh, the more harder you are to kidnap. Eat more cake.`]
 
         return (
-            <div className='container-fluid' style={{ height: '100vh', backgroundImage: 'linear-gradient(to right top, #0043a8, #007cdb, #00abc8, #00d27f, #a8eb12)' }}>
+            <div className='container-fluid' style={{ height: '100vh', backgroundImage: 'url(https://images.unsplash.com/photo-1493690283958-32df2c86326e?ixlib=rb-0.3.5&s=b62d34e46e0ddc9b507068c1aab921f9&auto=format&fit=crop&w=1496&q=80)' }}>
                 <div className='row justify-content-center align-items-center h-100'>
                     <div className='col-md-4 d-flex align-items-center'>
-                        <h3 className='text-center text-white'>{quotes[Math.floor(Math.random() * quotes.length)]}
-                        </h3>
+                       <img alt='loading' src = 'url(https://steemitimages.com/DQmTWvU8mjzBQA7U1mvWWcCUhQVcBCoj4Hvikd3tihoRzJQ/loading-animation2.gif)'/>                     
                     </div>
 
                 </div>

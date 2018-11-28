@@ -58,7 +58,6 @@ class Week extends React.Component{
                     <button type='submit' className='btn btn-outline-primary' > Next Week</button>
                 </div>
                 </form>
-            }
 
         </div>)
     }

@@ -182,7 +182,6 @@ router.put('/updateScores', (req, res) => {
         })
 })
 
-router.get('/getToday')
 
 
 
