@@ -22,6 +22,10 @@ const stress_scores_routes = require('./routes/stress_scores_routes.js')
 app.use(loginRoutes);
 app.use(stress_scores_routes)
 
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+// Define any API routes before this runs
+})
 
   app.listen(PORT, () => {
     console.log(`App listening on PORT ${PORT}`);
