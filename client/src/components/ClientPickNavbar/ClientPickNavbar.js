@@ -10,6 +10,7 @@ import {
 
 } from 'reactstrap';
 import { Link } from 'react-router-dom'
+import firebase from 'firebase'
 
 
 
@@ -26,6 +27,10 @@ class ClientPickNavbar extends React.Component {
         this.setState({
             isOpen: !this.state.isOpen
         });
+    }
+    Logout(){
+        firebase.auth().signOut()
+
     }
 
     render() {
@@ -45,7 +50,7 @@ class ClientPickNavbar extends React.Component {
                                         <NavLink href="/">Personal Dashboard</NavLink>
                                     </NavItem>
                                     <NavItem>
-                                        <NavLink href="/Signout">Sign Out</NavLink>
+                                        <Link to='/' className='nav-link' onClick={this.Logout}>Sign Out</Link>
                                     </NavItem>
                                 </Nav>
                             </Collapse>
@@ -53,11 +58,9 @@ class ClientPickNavbar extends React.Component {
 
                             <Collapse isOpen={this.state.isOpen} navbar>
                                 <Nav className="ml-auto" navbar>
+                                   
                                     <NavItem>
-                                        <NavLink href="/">Personal Dashboard</NavLink>
-                                    </NavItem>
-                                    <NavItem>
-                                        <Link to='/LogAWorkout' className={'nav-link'}>Log A Workout</Link>
+                                        <Link to='/LogAWorkout' className={'nav-link'}>Create Program</Link>
                                     </NavItem>
                                     <NavItem>
                                         <Link to='/LogMetrics' className={'nav-link'}>Log Metrics</Link>
@@ -71,7 +74,7 @@ class ClientPickNavbar extends React.Component {
                                         <NavLink href="/dashboard">Change Clients</NavLink>
                                     </NavItem>
                                     <NavItem>
-                                        <NavLink href="/Signout">Sign Out</NavLink>
+                                        <Link to="/signout" onClick={this.Logout} className={'nav-link'}>Sign Out</Link>
                                     </NavItem>
                                 </Nav>
                             </Collapse>

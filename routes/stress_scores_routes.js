@@ -157,6 +157,18 @@ router.put('/addINOLScores', (req, res) => {
     res.send('hi')
 })
 
+router.post('/addWeight', (req, res) => {
+    req.body.forEach(day=>{
+        firestore.collection('Users').doc('o08zN3ShilgKq2hSwscQy95Kx1L2').collection('Body Metrics').add({
+            Date: new Date(day.Date),
+            Weight: parseFloat(day.Weight.toFixed(2)),
+            Sleep: day.Sleep
+        }).catch(()=>{
+            res.send('nope!')
+        })
+    })
+    res.send('yay!')
+})
 
 
 module.exports = router

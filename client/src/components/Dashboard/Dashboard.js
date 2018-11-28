@@ -57,8 +57,8 @@ class Dashboard extends React.Component {
 
     render() {
         return (
-            <div className='container-fluid' style={{ minHeight: '100vh', backgroundImage: 'linear-gradient(to right top, #0043a8, #007cdb, #00abc8, #00d27f, #a8eb12)', paddingTop: '100px' }}>
-          
+            <div className='container-fluid' style={{ minHeight: '100vh', backgroundImage: 'url(https://images.unsplash.com/photo-1493690283958-32df2c86326e?ixlib=rb-0.3.5&s=b62d34e46e0ddc9b507068c1aab921f9&auto=format&fit=crop&w=1496&q=80)', paddingTop: '100px' }}>
+          <div style={{backgroundColor:'rgba(255,255,255,.5)',height:'100%',width:'100%',position:'absolute',marginTop:'-100px',marginLeft:'-15px'}}></div>
                 {this.props.all.picked === '' ?
                 <div>
                 <Navbar
