@@ -14,8 +14,10 @@ class ClientPick extends React.Component {
 
                                 <div className='col-sm-5 d-flex justify-content-center'>
                                     <div className='d-flex justify-content-center align-items-center' 
-                                    style={{ height: '60px', width: '60px', borderRadius: '30px', backgroundColor: 'whitesmoke' }}>
-                                    <i class="fas fa-user fa-3x"></i>
+                                    style={{ height: '60px', width: '60px', borderRadius: '30px', backgroundColor: 'whitesmoke', overflow:'hidden' }}>
+                                       {client.first==='Pierre'? <img style={{height: '80px', zIndex: '10',marginLeft:'40px'}} src = 'https://uclaclubsports.com/images/2015/1/30/10922541_400089400168628_7184843557926444544_n.jpg?width=300' alt='profile'/>
+                                     : <i class="fas fa-user fa-3x"></i>}
+                                   
                                     </div>
                                 </div>
 

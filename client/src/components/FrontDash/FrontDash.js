@@ -10,7 +10,9 @@ class FrontDash extends React.Component {
         return (
             <div>
                 <div className='row justify-content-center align-items-center'  >
-                    <div style={{ height: '80px', width: '80px', zIndex: '10', borderRadius: '40px', backgroundColor: 'grey' }}></div>
+                <div style={{ height: '80px', width: '80px',overflow: 'hidden', borderRadius: '40px', zIndex: '10'}}>
+                    <img style={{height: '80px', zIndex: '10'}} src = 'https://uclaclubsports.com/images/2015/1/30/10922541_400089400168628_7184843557926444544_n.jpg?width=300' alt='profile'/>
+                    </div>
                     <h3 style={{ marginLeft: '15px', zIndex: '10' }}>{`${this.props.first} ${this.props.last}`}</h3>
                 </div>
                 <div className='row'>
