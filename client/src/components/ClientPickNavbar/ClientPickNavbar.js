@@ -58,9 +58,14 @@ class ClientPickNavbar extends React.Component {
 
                             <Collapse isOpen={this.state.isOpen} navbar>
                                 <Nav className="ml-auto" navbar>
-                                   
+                                <NavItem>
+                                        <Link to='/Dashboard' className={'nav-link'}>Home</Link>
+                                    </NavItem>
                                     <NavItem>
                                         <Link to='/LogAWorkout' className={'nav-link'}>Create Program</Link>
+                                    </NavItem>
+                                    <NavItem>
+                                        <Link to='/Sync' className={'nav-link'}>Sync</Link>
                                     </NavItem>
                                     <NavItem>
                                         <Link to='/LogMetrics' className={'nav-link'}>Log Metrics</Link>

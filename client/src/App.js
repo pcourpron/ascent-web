@@ -318,6 +318,8 @@ console.log(this.state)
                     all={this.state}
                     handleClientPick={this.handleClientPick}
                     uploadClients={this.upLoadClients}
+                    getBodyWeights={this.getBodyWeights}
+                    getStressScores={this.getStressScores}
                   />)
               }} />
 
@@ -343,7 +345,7 @@ console.log(this.state)
               }} />
 
               <Route exact path='/syncingPage' render={(history) => {
-                return (<SyncingPage />)
+                return (<SyncingPage history={history} />)
               }} />
 
               <Route exact path='/Graphs' render={(history) => {

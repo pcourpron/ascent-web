@@ -18,7 +18,10 @@ class Dashboard extends React.Component {
 
 
     componentWillMount = () => {
-
+        if(this.props.all.picked !==''){
+            this.props.getStressScores()
+            this.props.getBodyWeights()
+        }
         var clientPromise = new Promise(function (resolve, reject) {
             auth.onAuthStateChanged(function (user) {
                 var newClients = []
